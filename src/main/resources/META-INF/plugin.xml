@@ -1,0 +1,21 @@
+<idea-plugin>
+    <id>com.anecdote.WebSequenceDiagrams</id>
+    <name>WebSequenceDiagrams Support</name>
+    <vendor email="anecdotesoftware@gmail.com">Nathan Brown</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.anecdote.wsd.WSDFileTypeFactory"/>
+        <fileEditorProvider implementation="com.anecdote.wsd.WSDEditorProvider"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
