@@ -2,10 +2,18 @@
     <id>com.anecdote.WebSequenceDiagrams</id>
     <name>WebSequenceDiagrams Support</name>
     <vendor email="anecdotesoftware@gmail.com">Nathan Brown</vendor>
-
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Custom editor for the sequence diagram language defined by <a href="http://www.websequencediagrams.com">WebSequenceDiagrams.com</a>.
+    Supports:
+    <ul><li>Preview of generated sequence diagram (default style, bitmap only)</li></ul>
+    To Do in future versions:
+    <ul><li>Choice of custom style</li>
+    <li>Share link to rendered diagram</li>
+    <li>Syntax highlighting</li>
+    <li>Auto completion</li>
+    <li>Validation and error highlighting</li>
+    <li>Subscription support (larger diagrams, svg)</li>
+    </ul>
     ]]></description>
 
     <depends>com.intellij.modules.lang</depends>

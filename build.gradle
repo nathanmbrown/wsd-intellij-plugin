@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.anecdote'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -17,10 +17,15 @@ dependencies {
 }
 
 intellij {
-    version '182.3911.6'
+    version '182.3684.101'
 }
+
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      <ul><li>Version 1.0 - Support for bitmap preview of WebSequenceDiagram files (*.wsd)</li></ul>"""
+}
+
+publishPlugin {
+    username intellijPublishUsername
+    password intellijPublishPassword
 }

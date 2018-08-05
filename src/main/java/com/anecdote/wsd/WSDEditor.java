@@ -8,6 +8,8 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.util.UserDataHolderBase;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.newvfs.impl.FakeVirtualFile;
+import com.intellij.testFramework.LightVirtualFile;
 import com.intellij.util.EventDispatcher;
 import org.intellij.images.editor.ImageEditor;
 import org.intellij.images.editor.ImageFileEditor;
@@ -31,12 +33,12 @@ public class WSDEditor extends UserDataHolderBase implements ImageFileEditor, Pr
 
   WSDEditor(@NotNull Project project, @NotNull VirtualFile file)
   {
-    imageEditor = new ImageEditorImpl(project, file);
+    imageEditor = new ImageEditorImpl(project, new LightVirtualFile("fake.wsd")); // don't pass real file as don't
+                                                                                        // want image editor to register
+                                                                                        // with it
     Disposer.register(this, imageEditor);
     imageEditor.setGridVisible(false);
     imageEditor.setTransparencyChessboardVisible(false);
-
-//    ((ImageEditorImpl)imageEditor).getComponent().getImageComponent().addPropertyChangeListener(this);
   }
 
   @NotNull

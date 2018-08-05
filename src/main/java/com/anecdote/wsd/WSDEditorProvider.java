@@ -4,27 +4,22 @@ import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.editor.event.DocumentListener;
 import com.intellij.openapi.fileEditor.*;
 import com.intellij.openapi.fileEditor.impl.text.TextEditorProvider;
-import com.intellij.openapi.fileTypes.StdFileTypes;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.testFramework.LightVirtualFile;
 import com.intellij.util.Alarm;
-import com.intellij.util.io.IOUtil;
 import com.intellij.util.ui.UIUtil;
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.io.IOUtils;
-import org.intellij.images.editor.ImageDocument;
-import org.intellij.images.fileTypes.impl.SvgFileType;
-import org.intellij.images.vfs.IfsUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.*;
 import java.net.*;
 
@@ -45,6 +40,13 @@ final class WSDEditorProvider implements FileEditorProvider, DumbAware
   private void updatePreview(WSDEditor viewer, String documentContent)
   {
     try {
+      BufferedImage bufferedImage = viewer.getImageEditor().getDocument().getValue();
+      if (bufferedImage != null) {
+        RescaleOp rescaleOp = new RescaleOp(1.0f, 155, null);
+        rescaleOp.filter(bufferedImage,
+                         bufferedImage);  // Source and destination are the same.
+        viewer.getImageEditor().getDocument().setValue(bufferedImage);
+      }
       BufferedImage image = getImage(documentContent);
       viewer.getImageEditor().getDocument().setValue(image);
 //      String svg = getSVG(documentContent);
